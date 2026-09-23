@@ -1,0 +1,30 @@
+name = "ai-router-proxy"
+type = "javascript"
+account_id = ""
+workers_dev = true
+
+[env.production]
+name = "ai-router-proxy-prod"
+route = "api.yourdomain.com/*"
+zone_id = ""
+
+[env.staging]
+name = "ai-router-proxy-staging"
+route = "staging-api.yourdomain.com/*"
+zone_id = ""
+
+kv_namespaces = [
+  { binding = "DATA", id = "", preview_id = "" }
+]
+
+[env.production.vars]
+NODE_ENV = "production"
+LOG_LEVEL = "info"
+
+[env.staging.vars]
+NODE_ENV = "staging"
+LOG_LEVEL = "debug"
+
+build = { command = "npm run build", cwd = "." }
+compatibility_date = "2025-06-01"
+compatibility_flags = ["nodejs_compat"]
